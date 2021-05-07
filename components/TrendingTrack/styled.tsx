@@ -5,9 +5,11 @@ export const TrackWrapper = styled.div`
   height: 142px;
   padding-top: 27px;
 
-  .col:last-child {
-    div {
-      border-right: 0;
+  .col {
+    &:last-child {
+      div {
+        border-right: 0;
+      }
     }
   }
 
@@ -17,6 +19,7 @@ export const TrackWrapper = styled.div`
   }
 
   h4 {
+    display: table-caption;
     font-size: 20px;
     font-weight: normal;
     line-height: 30px;
@@ -31,6 +34,12 @@ export const TrackBox = styled.div`
   border-right: 1px solid white;
   padding-bottom: 2px;
   padding-right: 28px;
+
+  h4 {
+    position: relative;
+    right: 4px;
+    margin-top: 16px;
+  }
 
   p {
     line-height: 32px;

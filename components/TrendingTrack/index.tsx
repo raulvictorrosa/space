@@ -13,6 +13,28 @@ type TrendingTrackType = {
   data: TrendType[];
 };
 
+type SplitTitle = React.PropsWithChildren<{
+  children: string;
+}>;
+
+const SplitTitle: React.FC<SplitTitle> = ({ children }) => {
+  const splatted = children.split(' ');
+
+  return (
+    <h4>
+      {splatted.map((item, i) => {
+        if (splatted.length == i + 1) {
+          return <span className="text-primary">{item}</span>;
+        } else if (splatted.length == 1) {
+          return item;
+        } else {
+          return item + ' ';
+        }
+      })}
+    </h4>
+  );
+};
+
 const TrendingTrack: React.FC<TrendingTrackType> = ({ title, data }) => {
   return (
     <TrackWrapper className="trendingTrack">
@@ -20,7 +42,9 @@ const TrendingTrack: React.FC<TrendingTrackType> = ({ title, data }) => {
         <Row sm="4">
           <Col>
             <TrackBox>
-              <h4>{title}</h4>
+              <div className="wrapText">
+                <SplitTitle>{title}</SplitTitle>
+              </div>
             </TrackBox>
           </Col>
           {data.map((trend: TrendType) => (
