@@ -6,13 +6,23 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 
-export const Container = styled(ContainerStyled)`
-  position: relative;
-  z-index: 1;
+export const HeaderBG = styled.div`
+  &.type-1 {
+    position: relative;
+    top: 135px;
+    margin-top: -135px;
+
+    .navbar {
+      align-items: flex-start;
+      margin-top: 38px;
+    }
+  }
 `;
 
+export const Container = styled(ContainerStyled)``;
+
 export const Navbar = styled(NavbarStyled)`
-  margin-top: 38px;
+  align-items: center;
 
   &.space-default {
   }

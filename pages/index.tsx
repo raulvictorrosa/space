@@ -25,10 +25,11 @@ const newsTest = [
 const Home = () => {
   return (
     <>
-      <Header className="" navBgColor="#4A90E2" transparent contained />
+      <Header transparent contained type="1" />
       <Banner src="/images/image1.jpg" title="Space" caption={captionTest}>
         <TrendingTrack title="Trending Today" data={newsTest} />
       </Banner>
+      <Header className="bg-primary" contained />
     </>
   );
 };

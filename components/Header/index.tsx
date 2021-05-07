@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 import { Col, Collapse, Nav, NavbarToggler, Row } from 'reactstrap';
-import { Container, ImageLogo, Navbar, NavItem } from './styled';
+import { Container, HeaderBG, ImageLogo, Navbar, NavItem } from './styled';
 
 type BsNavLinkType = {
   href: string;
@@ -25,6 +25,7 @@ type HeaderType = {
   contained?: boolean;
   transparent?: boolean;
   navBgColor?: string;
+  type?: string;
 };
 
 type WrapperType = React.PropsWithChildren<{
@@ -73,54 +74,59 @@ const Wrapper = ({ children, contained = false }: WrapperType) =>
   );
 
 const Header: React.FC<HeaderType> = (props) => {
-  const { className = '', contained, navBgColor, transparent } = props;
+  const { className = '', contained, navBgColor, transparent, type } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Wrapper contained={contained}>
-      <ReactResizeDetector handleWidth>
-        {({ width }) => (
-          <Navbar
-            className={
-              `align-items-start${className && ` ${className}`}` +
-              `${transparent && ` bg-transparent`}` +
-              `${Number(width) < 768 && isOpen ? ` is-open` : ` is-close`}`
-            }
-            // dark
-            expand="md"
-            style={
-              navBgColor && !transparent ? { backgroundColor: navBgColor } : {}
-            }
-          >
-            <BsNavBrand
-              className="mr-auto"
-              src="/images/logo.svg"
-              alt="Picture of the author"
-              width="64"
-              height="64"
-            />
-            <NavbarToggler onClick={toggle} />
-            <Collapse isOpen={isOpen} navbar className="justify-content-end">
-              <Nav navbar>
-                <NavItem>
-                  <BsNavLink href="/blog" title="Blog" />
-                </NavItem>
-                <NavItem>
-                  <BsNavLink href="/popular" title="Popular" />
-                </NavItem>
-                <NavItem>
-                  <BsNavLink href="/archive" title="Archive" />
-                </NavItem>
-                <NavItem>
-                  <BsNavLink href="/about" title="About" />
-                </NavItem>
-              </Nav>
-            </Collapse>
-          </Navbar>
-        )}
-      </ReactResizeDetector>
-    </Wrapper>
+    <HeaderBG
+      className={
+        `${className && className}` +
+        `${transparent ? ` bg-transparent` : ''}` +
+        `${type ? ` type-${type}` : ''}`
+      }
+      style={navBgColor && !transparent ? { backgroundColor: navBgColor } : {}}
+    >
+      <Wrapper contained={contained}>
+        <ReactResizeDetector handleWidth>
+          {({ width }) => (
+            <Navbar
+              color="transparent"
+              className={
+                // `align-items-start` +
+                `${Number(width) < 768 && isOpen ? ` is-open` : ` is-close`}`
+              }
+              expand="md"
+            >
+              <BsNavBrand
+                className="mr-auto"
+                src="/images/logo.svg"
+                alt="Picture of the author"
+                width="64"
+                height="64"
+              />
+              <NavbarToggler onClick={toggle} />
+              <Collapse isOpen={isOpen} navbar className="justify-content-end">
+                <Nav navbar>
+                  <NavItem>
+                    <BsNavLink href="/blog" title="Blog" />
+                  </NavItem>
+                  <NavItem>
+                    <BsNavLink href="/popular" title="Popular" />
+                  </NavItem>
+                  <NavItem>
+                    <BsNavLink href="/archive" title="Archive" />
+                  </NavItem>
+                  <NavItem>
+                    <BsNavLink href="/about" title="About" />
+                  </NavItem>
+                </Nav>
+              </Collapse>
+            </Navbar>
+          )}
+        </ReactResizeDetector>
+      </Wrapper>
+    </HeaderBG>
   );
 };
 

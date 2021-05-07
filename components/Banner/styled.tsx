@@ -11,9 +11,7 @@ const bannerHeight = 662;
 const fontColor = '#fff';
 
 export const BannerContainer = styled.div`
-  position: absolute;
   height: ${bannerHeight}px;
-  top: 0;
   width: 100%;
 
   .trendingTrack {
