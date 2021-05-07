@@ -1,0 +1,18 @@
+$theme-colors: (
+  primary: #4a90e2
+);
+
+$font-family-sans-serif: 'Poppins', sans-serif;
+$font-family-base: $font-family-sans-serif;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1170px
+);
+
+$modal-xl: 1170px;
+$modal-lg: 800px;
+$modal-md: 500px;
+$modal-sm: 300px;
