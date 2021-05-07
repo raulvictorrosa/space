@@ -10,6 +10,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@fontsource/poppins": "^4.2.2",
     "bootstrap": "4.6.0",
     "next": "10.2.0",
     "react": "17.0.2",
