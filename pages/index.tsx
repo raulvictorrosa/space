@@ -1,26 +1,8 @@
 import Banner from 'components/Banner';
+import CarouselSlider from 'components/CarouselSlider';
 import Header from 'components/Header';
 import TrendingTrack from 'components/TrendingTrack';
-
-const captionTest =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie elit at lacus…';
-const newsTest = [
-  {
-    id: 'test1',
-    title:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing ligula eget dolor.'
-  },
-  {
-    id: 'test2',
-    title:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing ligula eget dolor.'
-  },
-  {
-    id: 'test3',
-    title:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing ligula eget dolor.'
-  }
-];
+import { captionTest, carousels, newsTest } from '../fakeData';
 
 const Home = () => {
   return (
@@ -29,7 +11,10 @@ const Home = () => {
       <Banner src="/images/image1.jpg" title="Space" caption={captionTest}>
         <TrendingTrack title="Trending Today" data={newsTest} />
       </Banner>
-      <Header className="bg-primary" contained />
+      <Header className="bg-primary" contained /* fixScroll */ />
+      <div style={{ paddingTop: '125px', backgroundColor: '#F2F2F2' }}>
+        <CarouselSlider isPlaying infinite data={carousels} />
+      </div>
     </>
   );
 };
