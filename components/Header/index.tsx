@@ -92,10 +92,9 @@ const Header: React.FC<HeaderType> = (props) => {
           {({ width }) => (
             <Navbar
               color="transparent"
-              className={
-                // `align-items-start` +
-                `${Number(width) < 768 && isOpen ? ` is-open` : ` is-close`}`
-              }
+              className={`${
+                Number(width) < 768 && isOpen ? ` is-open` : ` is-close`
+              }`}
               expand="md"
             >
               <BsNavBrand
