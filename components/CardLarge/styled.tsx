@@ -2,8 +2,6 @@ import { Container } from 'reactstrap';
 import styled from 'styled-components';
 
 export const CardContainer = styled(Container)`
-  margin-bottom: 200px;
-
   .card {
     background-color: transparent;
     border: 0px;
