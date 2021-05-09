@@ -7,15 +7,34 @@ import {
 import styled from 'styled-components';
 
 export const HeaderBG = styled.div`
+  @media (max-width: 767px) {
+    &.is-open {
+      min-height: 560px;
+      background-color: #4a90e2 !important;
+    }
+  }
+
   &.type-1 {
     position: relative;
-    top: 135px;
-    margin-top: -135px;
+    top: 136px;
+    margin-top: -136px;
     z-index: 1;
 
     .navbar {
-      align-items: flex-start;
-      margin-top: 38px;
+      margin-top: 11px;
+      margin-left: 8px;
+      @media (min-width: 768px) {
+        align-items: flex-start;
+        margin-top: 38px;
+        margin-left: 0;
+      }
+    }
+
+    .navbar-nav {
+      text-align: center;
+      @media (min-width: 768px) {
+        text-align: left;
+      }
     }
   }
 `;
@@ -54,4 +73,11 @@ export const NavItem = styled(NavItemStyled)`
     text-transform: uppercase;
     letter-spacing: 0.2px;
   }
+`;
+
+export const MenuIcon = styled.button`
+  border: 0;
+  padding: 0;
+  position: relative;
+  right: 15px;
 `;
