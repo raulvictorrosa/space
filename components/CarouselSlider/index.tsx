@@ -2,12 +2,14 @@ import {
   ButtonBack,
   ButtonNext,
   CarouselProvider,
+  DotGroup,
   Image,
   Slide,
   Slider
 } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useResizeDetector } from 'react-resize-detector';
 import { Card, CardBody, CardText, CardTitle, Col, Row } from 'reactstrap';
 import { CarouselContainer, CarouselIcon } from './styled';
 
@@ -54,36 +56,66 @@ const CarouselSlider: CarouselSliderType = ({
   isPlaying,
   infinite = false
 }) => {
+  const [visibleSlides, setVisibleSlides] = useState<number>(1);
+  const { width, ref } = useResizeDetector<HTMLDivElement>({
+    handleHeight: false,
+    refreshMode: 'debounce',
+    refreshRate: 1000
+  });
+
+  useEffect(() => {
+    let slides = 1;
+    if (Number(width) >= 768) {
+      slides = 3;
+    }
+    if (Number(width) >= 576 && Number(width) <= 767) {
+      slides = 2;
+    }
+    setVisibleSlides(slides);
+  }, [width]);
+
   return (
-    <CarouselContainer className={`pl-0 pr-0 ${className}`}>
-      <Row>
-        <Col>
-          <CarouselProvider
-            visibleSlides={3}
-            totalSlides={data.length}
-            naturalSlideWidth={368}
-            naturalSlideHeight={462}
-            hasMasterSpinner
-            isPlaying={isPlaying}
-            infinite={infinite}
-          >
-            <Slider>
-              {data.map((item: ItemType, i: number) => (
-                <Slide key={item.id} index={i}>
-                  <CardItem item={item} />
-                </Slide>
-              ))}
-            </Slider>
-            <ButtonBack className="carousel-button">
-              <CarouselIcon aria-hidden="true" data-icon="&#x34;" />
-            </ButtonBack>
-            <ButtonNext className="carousel-button">
-              <CarouselIcon aria-hidden="true" data-icon="&#x35;" />
-            </ButtonNext>
-          </CarouselProvider>
-        </Col>
-      </Row>
-    </CarouselContainer>
+    <div ref={ref}>
+      <CarouselContainer className={`pl-md-0 pr-md-0 ${className}`}>
+        <Row>
+          <Col>
+            <CarouselProvider
+              visibleSlides={visibleSlides}
+              totalSlides={data.length}
+              naturalSlideWidth={368}
+              naturalSlideHeight={462}
+              hasMasterSpinner
+              isPlaying={isPlaying}
+              infinite={infinite}
+            >
+              <Slider>
+                {data.map((item: ItemType, i: number) => (
+                  <Slide key={item.id} index={i}>
+                    <CardItem item={item} />
+                  </Slide>
+                ))}
+              </Slider>
+              <ButtonBack
+                className={`carousel-button d-none${
+                  Number(width) >= 1300 ? ' d-xl-block' : ''
+                }`}
+              >
+                <CarouselIcon aria-hidden="true" data-icon="&#x34;" />
+              </ButtonBack>
+              <ButtonNext
+                className={`carousel-button d-none${
+                  Number(width) >= 1300 ? ' d-xl-block' : ''
+                }`}
+              >
+                <CarouselIcon aria-hidden="true" data-icon="&#x35;" />
+              </ButtonNext>
+
+              <DotGroup className="d-xl-none" />
+            </CarouselProvider>
+          </Col>
+        </Row>
+      </CarouselContainer>
+    </div>
   );
 };
 
