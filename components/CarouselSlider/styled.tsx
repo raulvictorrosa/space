@@ -45,6 +45,9 @@ export const CarouselContainer = styled(Container)`
       color: #3e4d60;
       line-height: 30px;
     }
+    &-text {
+      color: #8c94a8;
+    }
   }
 `;
 

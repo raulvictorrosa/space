@@ -24,6 +24,7 @@ type ItemType = {
 type CardItemType = React.PropsWithChildren<{ item: ItemType }>;
 
 type CarouselSliderType = React.FC<{
+  className?: string;
   data: ItemType[];
   isPlaying: boolean;
   infinite?: boolean;
@@ -49,11 +50,12 @@ const CardItem: React.FC<CardItemType> = ({
 
 const CarouselSlider: CarouselSliderType = ({
   data,
+  className,
   isPlaying,
   infinite = false
 }) => {
   return (
-    <CarouselContainer className="pl-0 pr-0">
+    <CarouselContainer className={`pl-0 pr-0 ${className}`}>
       <Row>
         <Col>
           <CarouselProvider
@@ -67,7 +69,7 @@ const CarouselSlider: CarouselSliderType = ({
           >
             <Slider>
               {data.map((item: ItemType, i: number) => (
-                <Slide index={i}>
+                <Slide key={item.id} index={i}>
                   <CardItem item={item} />
                 </Slide>
               ))}
