@@ -29,8 +29,6 @@ export const BannerImage = styled.div`
   filter: brightness(0.5);
   width: ${({ width }: BannerImage) => width};
   height: ${bannerHeight}px;
-  z-index: -1;
-  position: relative;
 `;
 
 export const BannerCaption = styled(Container)`

@@ -11,6 +11,7 @@ export const HeaderBG = styled.div`
     position: relative;
     top: 135px;
     margin-top: -135px;
+    z-index: 1;
 
     .navbar {
       align-items: flex-start;
