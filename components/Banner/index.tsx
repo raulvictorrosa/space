@@ -13,7 +13,10 @@ type BannerType = React.PropsWithChildren<{
   src: string;
   width?: string;
   height?: string;
-  title: string;
+  title: {
+    primary: string;
+    secondary?: string;
+  };
   caption: string;
   // href: string;
 }>;
@@ -50,10 +53,15 @@ const Banner: React.FC<BannerType> = (props) => {
   return (
     <BannerContainer className={className}>
       <BannerImage src={src} width={width} height={height} />
-      <BannerCaption className="pl-0 pr-0">
+      <BannerCaption className="pl-md-0 pr-md-0">
         <Row>
           <Col sm={6}>
-            <h1>{title}</h1>
+            <h1>
+              {title.primary}
+              {title.secondary && (
+                <span className="text-primary">{title.secondary}</span>
+              )}
+            </h1>
             <p>{caption}</p>
             <BannerButton>click</BannerButton>
           </Col>

@@ -7,16 +7,21 @@ type BannerImage = {
   height: string;
 };
 
-const bannerHeight = 662;
 const fontColor = '#fff';
 
 export const BannerContainer = styled.div`
-  height: ${bannerHeight}px;
   width: 100%;
+  height: 447px;
+  @media (min-width: 768px) {
+    height: 662px;
+  }
 
   .trendingTrack {
     position: relative;
-    top: -142px;
+    top: -179px;
+    @media (min-width: 1200px) {
+      top: -142px;
+    }
   }
 `;
 
@@ -28,16 +33,25 @@ export const BannerImage = styled.div`
   transform: scaleX(-1);
   filter: brightness(0.5);
   width: ${({ width }: BannerImage) => width};
-  height: ${bannerHeight}px;
+  height: 447px;
+
+  @media (min-width: 768px) {
+    height: 662px;
+  }
 `;
 
 export const BannerCaption = styled(Container)`
   position: absolute;
-  top: 195px;
+  top: 130px;
   left: 50%;
   transform: translate(-50%);
   overflow: hidden;
-  margin-left: 2px;
+  padding-left: 24px;
+
+  @media (min-width: 768px) {
+    margin-left: 2px;
+    top: 195px;
+  }
 
   h1,
   p,
@@ -46,17 +60,28 @@ export const BannerCaption = styled(Container)`
   }
 
   h1 {
-    font-size: 118px;
+    font-size: 48px;
     font-weight: normal;
     line-height: 67px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.8px;
+    margin-bottom: 16px;
+
+    @media (min-width: 768px) {
+      font-size: 118px;
+      letter-spacing: 2px;
+      margin-bottom: 31px;
+    }
   }
 
   p {
-    margin-top: 31px;
     font-size: 18px;
     letter-spacing: 0.305085px;
+    margin-bottom: 24px;
+
+    @media (min-width: 768px) {
+      margin-bottom: 53px;
+    }
   }
 `;
 
@@ -64,7 +89,6 @@ export const BannerBtnStyle = styled.div`
   display: inline-flex;
   transition: 0.25s;
   transition-timing-function: cubic-bezier;
-  margin-top: 37px;
 
   &:hover,
   &:focus {
