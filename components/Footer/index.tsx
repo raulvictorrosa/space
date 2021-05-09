@@ -7,7 +7,9 @@ type CardLargeFC = React.FC<{
 }>;
 
 const Footer: CardLargeFC = ({ className }) => (
-  <FooterContainer className={`pl-0 pr-0${className ? ' ' + className : ''}`}>
+  <FooterContainer
+    className={`pl-md-0 pr-md-0${className ? ' ' + className : ''}`}
+  >
     <Row>
       <Col>
         <h6>© 2016 Created by Joyjet Digital Space Agency</h6>
