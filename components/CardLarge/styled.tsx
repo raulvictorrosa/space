@@ -1,18 +1,25 @@
+import Image from 'next/image';
 import { Container } from 'reactstrap';
 import styled from 'styled-components';
 
 export const CardContainer = styled(Container)`
+  padding-top: 56px;
+
   .card {
     background-color: transparent;
-    border: 0px;
+    border: 1px solid transparent;
 
     &,
     img {
       border-radius: 8px;
     }
     &-body {
-      padding: 0.75rem;
-      padding-top: 3px;
+      padding: 0.55rem;
+      padding-top: 36px;
+      @media (min-width: 768px) {
+        padding: 0.75rem;
+        padding-top: 3px;
+      }
     }
     &-title {
       text-transform: uppercase;
@@ -29,3 +36,5 @@ export const CardContainer = styled(Container)`
     }
   }
 `;
+
+export const CardImage = styled(Image)``;
