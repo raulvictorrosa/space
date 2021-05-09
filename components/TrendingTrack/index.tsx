@@ -24,40 +24,46 @@ const SplitTitle: React.FC<SplitTitle> = ({ children }) => {
     <h4>
       {splatted.map((item, i) => {
         if (splatted.length == i + 1) {
-          return <span className="text-primary">{item}</span>;
+          return (
+            <span key={item.toLowerCase() + '-' + i} className="text-primary">
+              {item}
+            </span>
+          );
         } else if (splatted.length == 1) {
-          return item;
+          return <span key={item.toLowerCase() + '-' + i}>{item}</span>;
         } else {
-          return item + ' ';
+          return <span key={item.toLowerCase() + '-' + i}>{item + ' '}</span>;
         }
       })}
     </h4>
   );
 };
 
-const TrendingTrack: React.FC<TrendingTrackType> = ({ title, data }) => {
-  return (
-    <TrackWrapper className="trendingTrack">
-      <Container className="pl-0 pr-0">
-        <Row sm="4">
+const TrendingTrack: React.FC<TrendingTrackType> = ({
+  title,
+  data,
+  className
+}) => (
+  <TrackWrapper className={`trendingTrack${className ? ` ${className}` : ''}`}>
+    <Container className="pl-md-0 pr-md-0">
+      <Row sm="4">
+        <Col>
+          <TrackBox>
+            <div className="wrapText">
+              <SplitTitle>{title}</SplitTitle>
+            </div>
+          </TrackBox>
+        </Col>
+        {data.map((trend: TrendType) => (
           <Col>
             <TrackBox>
-              <div className="wrapText">
-                <SplitTitle>{title}</SplitTitle>
-              </div>
+              <p>{trend.title}</p>
             </TrackBox>
           </Col>
-          {data.map((trend: TrendType) => (
-            <Col>
-              <TrackBox>
-                <p>{trend.title}</p>
-              </TrackBox>
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </TrackWrapper>
-  );
-};
+        ))}
+      </Row>
+    </Container>
+  </TrackWrapper>
+);
 
 export default TrendingTrack;

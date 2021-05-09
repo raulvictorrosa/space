@@ -2,8 +2,11 @@ import styled from 'styled-components';
 
 export const TrackWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
-  height: 142px;
-  padding-top: 27px;
+  /* height: 142px; */
+  padding-block: 27px;
+  /* @media (max-width: 1199px) {
+    height: 170px;
+  } */
 
   .col {
     &:last-child {
@@ -32,9 +35,16 @@ export const TrackBox = styled.div`
   justify-content: flex-end;
   height: 100%;
   border-right: 1px solid white;
-  padding-bottom: 2px;
   padding-right: 28px;
+  max-height: 179px;
+  @media (min-width: 1200px) {
+    max-height: 88px;
+  }
 
+  h4,
+  p {
+    margin-bottom: 0;
+  }
   h4 {
     position: relative;
     right: 4px;
