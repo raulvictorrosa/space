@@ -1,8 +1,9 @@
 import Banner from 'components/Banner';
+import CardLarge from 'components/CardLarge';
 import CarouselSlider from 'components/CarouselSlider';
 import Header from 'components/Header';
 import TrendingTrack from 'components/TrendingTrack';
-import { captionTest, carousels, newsTest } from '../fakeData';
+import { aboutData, captionTest, carousels, newsTest } from '../fakeData';
 
 const Home = () => {
   return (
@@ -13,7 +14,8 @@ const Home = () => {
       </Banner>
       <Header className="bg-primary" contained /* fixScroll */ />
       <div style={{ paddingTop: '125px', backgroundColor: '#F2F2F2' }}>
-        <CarouselSlider isPlaying infinite data={carousels} />
+        <CarouselSlider className="pb-2" isPlaying infinite data={carousels} />
+        <CardLarge className="pt-5" data={aboutData} />
       </div>
     </>
   );
