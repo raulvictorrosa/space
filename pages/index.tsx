@@ -1,33 +1,14 @@
-import Banner from 'components/Banner';
 import BaseLayout from 'components/BaseLayout';
 import BasePage from 'components/BasePage';
 import CardLarge from 'components/CardLarge';
 import CarouselSlider from 'components/CarouselSlider';
 import Footer from 'components/Footer';
-import Header from 'components/Header';
-import TrendingTrack from 'components/TrendingTrack';
-import { aboutData, captionTest, carousels, newsTest } from '../fakeData';
+import { aboutData, carousels } from '../fakeData';
 
 const Home = () => {
   return (
-    <BaseLayout>
-      <Header transparent contained type="1" />
-      <Banner
-        src="/images/image1.jpg"
-        title={{ primary: 'Space', secondary: '.' }}
-        caption={captionTest}
-      >
-        <TrendingTrack
-          className="d-none d-lg-block"
-          title="Trending Today"
-          data={newsTest}
-        />
-      </Banner>
-      <Header
-        className="bg-primary d-none d-md-block"
-        contained /* fixScroll */
-      />
-      <BasePage>
+    <BaseLayout indexPage>
+      <BasePage indexPage>
         <CarouselSlider className="pb-2" isPlaying infinite data={carousels} />
         <CardLarge data={aboutData} />
       </BasePage>
