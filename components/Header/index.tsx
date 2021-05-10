@@ -29,11 +29,13 @@ type BsNavBrandType = React.FC<{
 }>;
 
 export type HeaderType = React.FC<{
+  refPosition?: React.RefObject<HTMLDivElement>;
   className?: string;
   contained?: boolean;
   transparent?: boolean;
   navBgColor?: string;
   type?: string;
+  fixScroll?: boolean;
 }>;
 
 type WrapperType = React.FC<
@@ -78,9 +80,17 @@ export const Wrapper: WrapperType = ({ children, contained = false }) =>
   );
 
 const Header: HeaderType = (props) => {
-  const { className = '', contained, navBgColor, transparent, type } = props;
+  const {
+    className = '',
+    contained,
+    navBgColor,
+    transparent,
+    type,
+    fixScroll = false,
+    refPosition
+  } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { width, ref } = useResizeDetector();
+  const { width, height, ref } = useResizeDetector();
   const toggle = () => setIsOpen(!isOpen);
 
   return (
@@ -88,53 +98,56 @@ const Header: HeaderType = (props) => {
       ref={ref}
       className={
         `${className ? ` ${className}` : ''}` +
+        `${fixScroll ? ` fixed-top` : ''}` +
         `${transparent ? ` bg-transparent` : ''}` +
         `${type ? ` type-${type}` : ''}` +
         `${Number(width) < 768 && isOpen ? ` is-open` : ` is-close`}`
       }
       style={navBgColor && !transparent ? { backgroundColor: navBgColor } : {}}
     >
-      <Wrapper contained={contained}>
-        <Navbar expand="md">
-          <BsNavBrand
-            className="mr-auto"
-            src="/images/logo.svg"
-            alt="Picture of the author"
-            width="64"
-            height="64"
-          />
-          {/* <NavbarToggler onClick={toggle} /> */}
-          <MenuIcon
-            aria-label="Toggle navigation"
-            type="button"
-            className="navbar-toggler"
-            onClick={toggle}
-          >
-            {!isOpen ? (
-              <ElegIcon aria-hidden="true" dataIcon="&#x61;" />
-            ) : (
-              <ElegIcon aria-hidden="true" dataIcon="&#x4d;" />
-            )}
-          </MenuIcon>
+      <div ref={refPosition}>
+        <Wrapper contained={contained}>
+          <Navbar expand="md">
+            <BsNavBrand
+              className="mr-auto"
+              src="/images/logo.svg"
+              alt="Picture of the author"
+              width="64"
+              height="64"
+            />
+            {/* <NavbarToggler onClick={toggle} /> */}
+            <MenuIcon
+              aria-label="Toggle navigation"
+              type="button"
+              className="navbar-toggler"
+              onClick={toggle}
+            >
+              {!isOpen ? (
+                <ElegIcon aria-hidden="true" dataIcon="&#x61;" />
+              ) : (
+                <ElegIcon aria-hidden="true" dataIcon="&#x4d;" />
+              )}
+            </MenuIcon>
 
-          <Collapse isOpen={isOpen} navbar className="justify-content-end">
-            <Nav navbar>
-              <NavItem>
-                <BsNavLink href="/blog" title="Blog" />
-              </NavItem>
-              <NavItem>
-                <BsNavLink href="/popular" title="Popular" />
-              </NavItem>
-              <NavItem>
-                <BsNavLink href="/archive" title="Archive" />
-              </NavItem>
-              <NavItem>
-                <BsNavLink href="/about" title="About" />
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </Wrapper>
+            <Collapse isOpen={isOpen} navbar className="justify-content-end">
+              <Nav navbar>
+                <NavItem>
+                  <BsNavLink href="/blog" title="Blog" />
+                </NavItem>
+                <NavItem>
+                  <BsNavLink href="/popular" title="Popular" />
+                </NavItem>
+                <NavItem>
+                  <BsNavLink href="/archive" title="Archive" />
+                </NavItem>
+                <NavItem>
+                  <BsNavLink href="/about" title="About" />
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar>
+        </Wrapper>
+      </div>
     </HeaderBG>
   );
 };
