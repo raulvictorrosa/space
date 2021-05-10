@@ -32,7 +32,7 @@ type CardItemType = React.FC<
 export type CarouselSliderType = React.FC<{
   className?: string;
   data: ItemType[];
-  isPlaying: boolean;
+  isPlaying?: boolean;
   infinite?: boolean;
 }>;
 
@@ -55,7 +55,7 @@ const CardItem: CardItemType = ({ item: { title, description, image } }) => (
 const CarouselSlider: CarouselSliderType = ({
   data,
   className,
-  isPlaying,
+  isPlaying = true,
   infinite = false
 }) => {
   const [visibleSlides, setVisibleSlides] = useState<number>(1);
