@@ -66,7 +66,7 @@ const BsNavBrand: BsNavBrandType = ({
   </Link>
 );
 
-const Wrapper: WrapperType = ({ children, contained = false }) =>
+export const Wrapper: WrapperType = ({ children, contained = false }) =>
   !contained ? (
     <React.Fragment>{children}</React.Fragment>
   ) : (
