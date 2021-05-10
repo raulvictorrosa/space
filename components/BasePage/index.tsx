@@ -1,3 +1,4 @@
+import { Wrapper } from 'components/Header';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -7,17 +8,34 @@ export type BasePageType = React.FC<
   React.PropsWithChildren<{
     className?: string;
     indexPage?: boolean;
+    title?: string;
     metaTitle?: string;
     metaDescription?: string;
     canonicalPath?: any;
   }>
 >;
 
+export type PageHeaderType = React.FC<{
+  className?: string;
+  title?: string;
+  contained?: boolean;
+}>;
+
+export const PageHeader: PageHeaderType = ({ className, title, contained }) => (
+  <Wrapper contained={contained}>
+    <div className={`page-header${className ? ` ${className}` : ''}`}>
+      <h1 className="page-header-title">{title}</h1>
+    </div>
+  </Wrapper>
+);
+
 const BasePage: BasePageType = (props) => {
   const router = useRouter();
   const {
-    className,
     children,
+    className,
+    indexPage,
+    title,
     metaTitle = 'Space',
     metaDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie elit at lacus.',
     canonicalPath
@@ -57,6 +75,7 @@ const BasePage: BasePageType = (props) => {
         <link rel="icon" type="image/x-ixon" href="/images/favicon.ico" />
       </Head>
       <PageWrapper className={className ? className : ''}>
+        {!indexPage && <PageHeader contained title={title} />}
         {children}
       </PageWrapper>
     </>
