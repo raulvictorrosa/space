@@ -6,6 +6,8 @@ export default {
   component: ElegIcon
 } as Meta;
 
-const Template: Story<ElegIconType> = (args) => <ElegIcon {...args} />;
+const Template: Story<ElegIconType> = (args) => (
+  <ElegIcon {...args} dataIcon="&#x61;" />
+);
 
 export const Default = Template.bind({});
