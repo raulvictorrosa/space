@@ -13,7 +13,7 @@ type CardLargeType = {
   };
 };
 
-type CardLargeFC = React.FC<{
+export type CardLargeFC = React.FC<{
   className?: string;
   data: CardLargeType[];
 }>;
