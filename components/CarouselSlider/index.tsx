@@ -23,18 +23,20 @@ type ItemType = {
   };
 };
 
-type CardItemType = React.PropsWithChildren<{ item: ItemType }>;
+type CardItemType = React.FC<
+  React.PropsWithChildren<{
+    item: ItemType;
+  }>
+>;
 
-type CarouselSliderType = React.FC<{
+export type CarouselSliderType = React.FC<{
   className?: string;
   data: ItemType[];
   isPlaying: boolean;
   infinite?: boolean;
 }>;
 
-const CardItem: React.FC<CardItemType> = ({
-  item: { title, description, image }
-}) => (
+const CardItem: CardItemType = ({ item: { title, description, image } }) => (
   <Card>
     <Image
       hasMasterSpinner
