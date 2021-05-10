@@ -2,12 +2,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { Children } from 'react';
 
-export type ActiveLinkType = React.FC<{
-  children?: any;
-  activeClassName?: string;
-  className?: string;
-  href: string;
-}>;
+export type ActiveLinkType = React.FC<
+  React.PropsWithChildren<{
+    children?: React.ReactNode;
+    className?: string;
+    activeClassName?: string;
+    href: string;
+  }>
+>;
 
 const ActiveLink: ActiveLinkType = ({ children, ...props }) => {
   const router = useRouter();
@@ -15,7 +17,7 @@ const ActiveLink: ActiveLinkType = ({ children, ...props }) => {
   let className = child.props.className || '';
 
   if (router.asPath === props.href && props.activeClassName) {
-    className = `${className} ${props.activeClassName}`;
+    className = `${className ? ` ${className}` : ''}${props.activeClassName}`;
   }
 
   delete props.activeClassName;
