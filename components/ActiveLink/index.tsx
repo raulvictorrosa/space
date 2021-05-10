@@ -2,14 +2,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { Children } from 'react';
 
-type ActiveLinkType = {
+export type ActiveLinkType = React.FC<{
   children?: any;
   activeClassName?: string;
   className?: string;
   href: string;
-};
+}>;
 
-const ActiveLink: React.FC<ActiveLinkType> = ({ children, ...props }) => {
+const ActiveLink: ActiveLinkType = ({ children, ...props }) => {
   const router = useRouter();
   const child = Children.only(children);
   let className = child.props.className || '';
