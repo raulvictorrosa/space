@@ -1,4 +1,5 @@
 import Banner from 'components/Banner';
+import BaseLayout from 'components/BaseLayout';
 import BasePage from 'components/BasePage';
 import CardLarge from 'components/CardLarge';
 import CarouselSlider from 'components/CarouselSlider';
@@ -9,7 +10,7 @@ import { aboutData, captionTest, carousels, newsTest } from '../fakeData';
 
 const Home = () => {
   return (
-    <div style={{ backgroundColor: '#F2F2F2' }}>
+    <BaseLayout>
       <Header transparent contained type="1" />
       <Banner
         src="/images/image1.jpg"
@@ -31,7 +32,7 @@ const Home = () => {
         <CardLarge data={aboutData} />
       </BasePage>
       <Footer />
-    </div>
+    </BaseLayout>
   );
 };
 
