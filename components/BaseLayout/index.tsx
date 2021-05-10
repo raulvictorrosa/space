@@ -12,14 +12,6 @@ export type BaseLayoutType = React.FC<
   }>
 >;
 
-const getWindowDimensions = (): any => {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height
-  };
-};
-
 const BaseLayout: BaseLayoutType = ({ children, className, indexPage }) => {
   return (
     <LayoutContainer className={`${className ? className : ''}`}>
