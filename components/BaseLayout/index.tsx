@@ -1,6 +1,6 @@
 import { LayoutContainer } from './styled';
 
-type BaseLayoutType = React.FC<
+export type BaseLayoutType = React.FC<
   React.PropsWithChildren<{
     className?: string;
   }>
