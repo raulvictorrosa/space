@@ -4,7 +4,7 @@ import React, { Children } from 'react';
 
 export type ActiveLinkType = React.FC<
   React.PropsWithChildren<{
-    children?: React.ReactNode;
+    children: any;
     className?: string;
     activeClassName?: string;
     href: string;
