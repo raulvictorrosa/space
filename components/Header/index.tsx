@@ -35,7 +35,7 @@ export type HeaderType = React.FC<{
   transparent?: boolean;
   navBgColor?: string;
   type?: string;
-  fixScroll?: boolean;
+  stickyTop?: boolean;
 }>;
 
 type WrapperType = React.FC<
@@ -86,8 +86,7 @@ const Header: HeaderType = (props) => {
     navBgColor,
     transparent,
     type,
-    fixScroll = false,
-    refPosition
+    stickyTop = false
   } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { width, height, ref } = useResizeDetector();
@@ -98,56 +97,54 @@ const Header: HeaderType = (props) => {
       ref={ref}
       className={
         `${className ? ` ${className}` : ''}` +
-        `${fixScroll ? ` fixed-top` : ''}` +
+        `${stickyTop ? ` sticky-top` : ''}` +
         `${transparent ? ` bg-transparent` : ''}` +
         `${type ? ` type-${type}` : ''}` +
         `${Number(width) < 768 && isOpen ? ` is-open` : ` is-close`}`
       }
       style={navBgColor && !transparent ? { backgroundColor: navBgColor } : {}}
     >
-      <div ref={refPosition}>
-        <Wrapper contained={contained}>
-          <Navbar expand="md">
-            <BsNavBrand
-              className="mr-auto"
-              src="/images/logo.svg"
-              alt="Picture of the author"
-              width="64"
-              height="64"
-            />
-            {/* <NavbarToggler onClick={toggle} /> */}
-            <MenuIcon
-              aria-label="Toggle navigation"
-              type="button"
-              className="navbar-toggler"
-              onClick={toggle}
-            >
-              {!isOpen ? (
-                <ElegIcon aria-hidden="true" dataIcon="&#x61;" />
-              ) : (
-                <ElegIcon aria-hidden="true" dataIcon="&#x4d;" />
-              )}
-            </MenuIcon>
+      <Wrapper contained={contained}>
+        <Navbar expand="md">
+          <BsNavBrand
+            className="mr-auto"
+            src="/images/logo.svg"
+            alt="Picture of the author"
+            width="64"
+            height="64"
+          />
+          {/* <NavbarToggler onClick={toggle} /> */}
+          <MenuIcon
+            aria-label="Toggle navigation"
+            type="button"
+            className="navbar-toggler"
+            onClick={toggle}
+          >
+            {!isOpen ? (
+              <ElegIcon aria-hidden="true" dataIcon="&#x61;" />
+            ) : (
+              <ElegIcon aria-hidden="true" dataIcon="&#x4d;" />
+            )}
+          </MenuIcon>
 
-            <Collapse isOpen={isOpen} navbar className="justify-content-end">
-              <Nav navbar>
-                <NavItem>
-                  <BsNavLink href="/blog" title="Blog" />
-                </NavItem>
-                <NavItem>
-                  <BsNavLink href="/popular" title="Popular" />
-                </NavItem>
-                <NavItem>
-                  <BsNavLink href="/archive" title="Archive" />
-                </NavItem>
-                <NavItem>
-                  <BsNavLink href="/about" title="About" />
-                </NavItem>
-              </Nav>
-            </Collapse>
-          </Navbar>
-        </Wrapper>
-      </div>
+          <Collapse isOpen={isOpen} navbar className="justify-content-end">
+            <Nav navbar>
+              <NavItem>
+                <BsNavLink href="/blog" title="Blog" />
+              </NavItem>
+              <NavItem>
+                <BsNavLink href="/popular" title="Popular" />
+              </NavItem>
+              <NavItem>
+                <BsNavLink href="/archive" title="Archive" />
+              </NavItem>
+              <NavItem>
+                <BsNavLink href="/about" title="About" />
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </Wrapper>
     </HeaderBG>
   );
 };
