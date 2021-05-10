@@ -2,11 +2,11 @@ import React from 'react';
 import { Col, Row } from 'reactstrap';
 import { FooterContainer } from './styled';
 
-type CardLargeFC = React.FC<{
+export type FooterFC = React.FC<{
   className?: string;
 }>;
 
-const Footer: CardLargeFC = ({ className }) => (
+const Footer: FooterFC = ({ className }) => (
   <FooterContainer
     className={`pl-md-0 pr-md-0${className ? ' ' + className : ''}`}
   >
