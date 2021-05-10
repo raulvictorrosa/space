@@ -13,6 +13,14 @@ export const HeaderBG = styled.div`
       background-color: #4a90e2 !important;
     }
   }
+  .navbar {
+    &-nav {
+      text-align: center;
+      @media (min-width: 768px) {
+        text-align: left;
+      }
+    }
+  }
 
   &.type-1 {
     position: relative;
@@ -27,13 +35,6 @@ export const HeaderBG = styled.div`
         align-items: flex-start;
         margin-top: 38px;
         margin-left: 0;
-      }
-    }
-
-    .navbar-nav {
-      text-align: center;
-      @media (min-width: 768px) {
-        text-align: left;
       }
     }
   }

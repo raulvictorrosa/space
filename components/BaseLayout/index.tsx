@@ -31,7 +31,11 @@ const BaseLayout: BaseLayoutType = ({ children, className, indexPage }) => {
           </Banner>
         </>
       )}
-      <Header className="bg-primary d-none d-md-block" contained stickyTop />
+      <Header
+        className={`bg-primary${indexPage ? ' d-none d-md-block' : ''}`}
+        contained
+        stickyTop
+      />
       {children}
     </LayoutContainer>
   );
