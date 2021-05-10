@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { PageWrapper } from './styled';
 
-type BasePageType = React.FC<
+export type BasePageType = React.FC<
   React.PropsWithChildren<{
     className?: string;
     indexPage?: boolean;
