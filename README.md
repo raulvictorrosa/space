@@ -2,7 +2,35 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+After cloning this repo, first, run the one of the commands bellow to install the dependencies
+
+```bash
+npm i
+# or
+yarn
+```
+
+### Set environment variable
+
+In your server ou your local machine set the environment variable.
+
 First, run the development server:
+
+```bash
+.env.local # to local environment
+# or
+.env.prod # to production environment
+```
+
+Inside the environment file set the variable bellow according to your URL.
+
+```bash
+BASE_URL=http://localhost:3000
+```
+
+### Running development mode
+
+So, if your are in in development environment you can run on of the commands bellow.:
 
 ```bash
 npm run dev
