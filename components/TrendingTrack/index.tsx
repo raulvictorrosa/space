@@ -7,18 +7,20 @@ type TrendType = {
   title: string;
 };
 
-type TrendingTrackType = {
+export type TrendingTrackType = React.FC<{
   className?: string;
   title: string;
   data: TrendType[];
-};
-
-type SplitTitle = React.PropsWithChildren<{
-  children: string;
 }>;
 
-const SplitTitle: React.FC<SplitTitle> = ({ children }) => {
-  const splatted = children.split(' ');
+type SplitTitle = React.FC<
+  React.PropsWithChildren<{
+    children: string;
+  }>
+>;
+
+const SplitTitle: SplitTitle = ({ children }) => {
+  const splatted: string[] = children ? children.split(' ') : [''];
 
   return (
     <h4>
@@ -39,11 +41,7 @@ const SplitTitle: React.FC<SplitTitle> = ({ children }) => {
   );
 };
 
-const TrendingTrack: React.FC<TrendingTrackType> = ({
-  title,
-  data,
-  className
-}) => (
+const TrendingTrack: TrendingTrackType = ({ title, data, className }) => (
   <TrackWrapper className={`trendingTrack${className ? ` ${className}` : ''}`}>
     <Container className="pl-md-0 pr-md-0">
       <Row sm="4">
