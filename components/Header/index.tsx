@@ -1,9 +1,9 @@
-import ActiveLink from 'components/ActiveLink';
-import { ElegIcon } from 'components/ElegantIcon';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import { Col, Collapse, Nav, Row } from 'reactstrap';
+import ActiveLink from '../../components/ActiveLink';
+import { ElegIcon } from '../../components/ElegantIcon';
 import {
   Container,
   HeaderBG,
@@ -13,44 +13,42 @@ import {
   NavItem
 } from './styled';
 
-type BsNavLinkType = {
+type BsNavLinkType = React.FC<{
   href: string;
   title: string;
   className?: string;
-};
+}>;
 
-type BsNavBrandType = {
+type BsNavBrandType = React.FC<{
   className?: string;
   title?: string;
   src?: string;
   alt?: string;
   width?: string | number;
   height?: string | number;
-};
+}>;
 
-type HeaderType = {
+export type HeaderType = React.FC<{
   className?: string;
   contained?: boolean;
   transparent?: boolean;
   navBgColor?: string;
   type?: string;
-};
-
-type WrapperType = React.PropsWithChildren<{
-  contained?: boolean;
 }>;
 
-const BsNavLink: React.FC<BsNavLinkType> = ({
-  href,
-  title,
-  className = ''
-}) => (
+type WrapperType = React.FC<
+  React.PropsWithChildren<{
+    contained?: boolean;
+  }>
+>;
+
+const BsNavLink: BsNavLinkType = ({ href, title, className = '' }) => (
   <ActiveLink activeClassName="active" href={href}>
     <a className={`nav-link port-navbar-link ${className}`}>{title}</a>
   </ActiveLink>
 );
 
-const BsNavBrand: React.FC<BsNavBrandType> = ({
+const BsNavBrand: BsNavBrandType = ({
   title,
   src,
   alt,
@@ -68,7 +66,7 @@ const BsNavBrand: React.FC<BsNavBrandType> = ({
   </Link>
 );
 
-const Wrapper = ({ children, contained = false }: WrapperType) =>
+const Wrapper: WrapperType = ({ children, contained = false }) =>
   !contained ? (
     <React.Fragment>{children}</React.Fragment>
   ) : (
@@ -79,7 +77,7 @@ const Wrapper = ({ children, contained = false }: WrapperType) =>
     </Container>
   );
 
-const Header: React.FC<HeaderType> = (props) => {
+const Header: HeaderType = (props) => {
   const { className = '', contained, navBgColor, transparent, type } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { width, ref } = useResizeDetector();
