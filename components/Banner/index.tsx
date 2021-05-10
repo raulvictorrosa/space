@@ -8,24 +8,28 @@ import {
   BannerImage
 } from './styled';
 
-type BannerType = React.PropsWithChildren<{
-  className?: string;
-  src: string;
-  width?: string;
-  height?: string;
-  title: {
-    primary: string;
-    secondary?: string;
-  };
-  caption: string;
-  // href: string;
-}>;
+export type BannerType = React.FC<
+  React.PropsWithChildren<{
+    className?: string;
+    src: string;
+    width?: string;
+    height?: string;
+    title: {
+      primary: string;
+      secondary?: string;
+    };
+    caption: string;
+    // href: string;
+  }>
+>;
 
-type BannerButton = React.PropsWithChildren<{
-  className?: string;
-}>;
+type BannerButton = React.FC<
+  React.PropsWithChildren<{
+    className?: string;
+  }>
+>;
 
-const BannerButton: React.FC<BannerButton> = ({ className, children }) => {
+const BannerButton: BannerButton = ({ className, children }) => {
   return (
     <BannerBtnStyle className={className}>
       <motion.button
@@ -39,7 +43,7 @@ const BannerButton: React.FC<BannerButton> = ({ className, children }) => {
   );
 };
 
-const Banner: React.FC<BannerType> = (props) => {
+const Banner: BannerType = (props) => {
   const {
     children,
     className = '',
