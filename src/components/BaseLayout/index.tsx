@@ -1,7 +1,7 @@
 import Banner from 'components/Banner';
 import Header from 'components/Header';
 import TrendingTrack from 'components/TrendingTrack';
-import { captionTest, newsTest } from 'fakeData';
+import { captionTest, newsTest } from '../../fakeData';
 import React from 'react';
 import { LayoutContainer } from './styled';
 
